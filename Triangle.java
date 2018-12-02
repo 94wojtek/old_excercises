@@ -41,6 +41,8 @@ public class Triangle implements Figure {
     }
 
     /*
+    //alternative display method
+    
     public void display() {
         computePerimeter();
         computeArea();
