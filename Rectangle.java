@@ -39,6 +39,8 @@ public class Rectangle implements Figure {
     }
 
     /*
+    //alternative display method
+    
     public void display() {
         computeArea();
         computePerimeter();
