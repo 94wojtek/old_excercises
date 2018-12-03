@@ -1,51 +1,40 @@
-public class Rectangle implements Figure {
+public class Rectangle {
+    private double lenght;
+    private double width;
 
-    private static double perimeter;
-    private static double area;
-    private static double width;
-    private static double length;
-
-    Rectangle(double width, double length) {
-        this.width = width;
-        this.length = length;
+    Rectangle() {
     }
 
-    public static double getWidth() {
+    Rectangle(double lenght, double width) {
+        this.lenght = lenght;
+        this.width = width;
+    }
+
+    public double area() {
+        return getLenght() * getWidth();
+    }
+
+    public double perimeter() {
+        return (2 * getLenght()) + (2 * getWidth());
+    }
+
+    public double diagonal() {
+        return Math.sqrt((Math.pow(getLenght(), 2)) + (Math.pow(getWidth(), 2)));
+    }
+
+    public double getLenght() {
+        return lenght;
+    }
+
+    public void setLenght(double lenght) {
+        this.lenght = lenght;
+    }
+
+    public double getWidth() {
         return width;
     }
 
-    public static double getLength() {
-        return length;
+    public void setWidth() {
+        this.width = width;
     }
-
-    public static void computePerimeter() {
-        perimeter = (2 * getWidth()) + (2 * getLength());
-    }
-
-    public static void computeArea() {
-        area = getWidth() * getLength();
-    }
-
-    @Override
-    public double getPerimeter() {
-        computePerimeter();
-        return perimeter;
-    }
-
-    @Override
-    public double getArea() {
-        computeArea();
-        return area;
-    }
-
-    /*
-    //alternative display method
-    
-    public void display() {
-        computeArea();
-        computePerimeter();
-        System.out.println("Perimeter of rectangle is: " + getPerimeter());
-        System.out.println("Area of rectangle is: " + getArea());
-    }
-    */
 }
