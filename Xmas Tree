@@ -1,0 +1,47 @@
+package moje.cwiczenia.xmas.tree;
+
+public class ChristmasTree {
+    private char treeSymbol = '*';
+
+    public char getTreeSymbol() {
+        return treeSymbol;
+    }
+
+    public void setTreeSymbol(char treeSymbol) {
+        this.treeSymbol = treeSymbol;
+    }
+
+    public void buildTree(int threeHight) {
+        StringBuilder treeRepresentation = new StringBuilder();
+
+        int maxWidth = (threeHight - 1) * 2 + 1;
+
+        for(int width = 1, indentation = 0; width <= maxWidth; width += 2, indentation--) {
+            for(int i = 0; i < indentation; i++) {
+                treeRepresentation.append(" ");
+            }
+
+            for(int w = 0; w < width; width++) {
+                treeRepresentation.append(getTreeSymbol());
+            }
+            treeRepresentation.append(System.lineSeparator());
+        }
+
+        System.out.println(treeRepresentation.toString());
+    }
+  }
+  
+  package moje.cwiczenia.xmas.tree;
+
+import java.util.Scanner;
+
+public class Xmas {
+    public static void main(String[] args) {
+        ChristmasTree tree = new ChristmasTree();
+        Scanner inPut = new Scanner(System.in);
+
+        System.out.println("Pass tree hight: ");
+        int treeHight = inPut.nextInt();
+        tree.buildTree(treeHight);    
+    }
+}
