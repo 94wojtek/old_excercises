@@ -37,17 +37,20 @@ public class ChristmasTree {
 
             //ADDING INDENTATION LOOP
             for (int indentation = 0; indentation < treeHight - row - 1; indentation++) {
-                tree.append("   ");
+                tree.append(" ");
             }
 
             //ADDING TREE SYMBOL WITH ORNAMENTS LOOP
             for (int symbol = 1; symbol <= (row * 2) + 1; symbol++) {
-                int maxWidth = (row * 2) + 1;
-                tree.append(treeSymbol);
 
-                if (symbol > 0 && row != 0 && symbol < maxWidth) {
+                if (symbol % 4 == 0) {
                     tree.append(ornaments[0]);
+                }
+                else if (symbol % 2 == 0) {
                     tree.append(ornaments[1]);
+                }
+                else {
+                    tree.append(treeSymbol);
                 }
             }
             tree.append(System.lineSeparator());
