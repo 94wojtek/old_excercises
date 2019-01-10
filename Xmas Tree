@@ -57,6 +57,43 @@ public class ChristmasTree {
         }
         System.out.println(tree.toString());
     }
+    //TREE WITH IRREGULAR DECORATION BUILDING METHOD
+    public void buildIrregDecoratedTree(int treeHight) {
+        StringBuilder tree = new StringBuilder();
+
+        //CREATE ROWS OF TREE LOOP
+        for (int row = 0; row < treeHight; row++) {
+            int maxWidth = (row * 2) + 1;
+
+            //ADDING INDENTATION LOOP
+            for (int indentation = 0; indentation < treeHight - row - 1; indentation++) {
+                tree.append(" ");
+            }
+
+            //ADDING TREE SYMBOL WITH RANDOM ORNAMENTS LOOP
+            for (int symbol = 1; symbol <= (row * 2) + 1; symbol++) {
+                int random = new Random().nextInt(maxWidth) + 1;
+                int rndOrnament = new Random().nextInt(ornaments.length);
+
+
+                if (symbol % 4 == 0 && symbol == random) {
+                    for (int index = 0; index < ornaments.length - 1; index++) {
+                        tree.append(ornaments[rndOrnament]);
+                    }
+                }
+                else if (symbol % 2 == 0 && symbol == random){
+                    for (int index = 0; index < ornaments.length - 1; index++) {
+                        tree.append(ornaments[rndOrnament]);
+                    }
+                }
+                else {
+                    tree.append(treeSymbol);
+                }
+            }
+            tree.append(System.lineSeparator());
+        }
+        System.out.println(tree.toString());
+    }
 }
 
 package excercises.xmas.tree;
@@ -73,6 +110,7 @@ public class Xmas {
         int treeHight = inPut.nextInt();
         tree.buildTree(treeHight);
         tree.buildRegDecoratedTree(treeHight);
+        tree.buildIrregDecoratedTree(treeHight);
         inPut.close();
     }
 }
