@@ -3,7 +3,6 @@ package excercises.xmas.tree;
 public class ChristmasTree {
     private final char treeSymbol = '*';
     private char[] ornaments = {'+', 'o'};
-    StringBuilder tree = new StringBuilder();
 
     public ChristmasTree() {}
 
