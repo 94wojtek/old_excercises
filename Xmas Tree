@@ -1,17 +1,20 @@
 package excercises.xmas.tree;
 
+import java.util.Random;
+
 public class ChristmasTree {
     private final char treeSymbol = '*';
-    private char[] ornaments = {'+', 'o'};
+    private char[] ornaments = {'+', 'o', '$', '#'};
 
-    public ChristmasTree() {}
+    //public ChristmasTree() {}
 
-    //TREE BUILDING METHOSD
+    //TREE BUILDING METHOD
     public void buildTree(int treeHight) {
         StringBuilder tree = new StringBuilder();
 
         //CREATE ROWS OF TREE LOOP
         for (int row = 0; row < treeHight; row++) {
+            int maxWidth = (row * 2) + 1;
 
             //ADDING INDENTATION LOOP
             for (int indentation = 0; indentation < treeHight - row - 1; indentation++) {
@@ -19,7 +22,7 @@ public class ChristmasTree {
             }
 
             //ADDING TREE SYMBOL LOOP
-            for (int symbol = 1; symbol <= (row * 2) + 1; symbol++) {
+            for (int symbol = 1; symbol <= maxWidth; symbol++) {
                 tree.append(treeSymbol);
             }
             tree.append(System.lineSeparator());
@@ -29,6 +32,7 @@ public class ChristmasTree {
 
     //TREE WITH REGULAR DECORATION BUILDING METHOD
     public void buildRegDecoratedTree(int treeHight) {
+        StringBuilder tree = new StringBuilder();
 
         //CREATE ROWS OF TREE LOOP
         for (int row = 0; row < treeHight; row++) {
@@ -59,10 +63,11 @@ public class ChristmasTree {
         }
         System.out.println(tree.toString());
     }
-    
+
     //TREE WITH IRREGULAR DECORATION BUILDING METHOD
     public void buildIrregDecoratedTree(int treeHight) {
         StringBuilder tree = new StringBuilder();
+        Random random = new Random();
 
         //CREATE ROWS OF TREE LOOP
         for (int row = 0; row < treeHight; row++) {
@@ -74,24 +79,17 @@ public class ChristmasTree {
             }
 
             //ADDING TREE SYMBOL WITH RANDOM ORNAMENTS LOOP
-            for (int symbol = 1; symbol <= (row * 2) + 1; symbol++) {
-                int random = new Random().nextInt(maxWidth) + 1;
-                int rndOrnament = new Random().nextInt(ornaments.length);
+            for (int symbol = 1; symbol <= maxWidth; symbol++) {
+                int rndPosition = random.nextInt(maxWidth + 1);
+                int rndOrnament = random.nextInt(ornaments.length);
 
-
-                if (symbol % 4 == 0 && symbol == random) {
-                    for (int index = 0; index < ornaments.length - 1; index++) {
-                        tree.append(ornaments[rndOrnament]);
-                    }
-                }
-                else if (symbol % 2 == 0 && symbol == random){
-                    for (int index = 0; index < ornaments.length - 1; index++) {
-                        tree.append(ornaments[rndOrnament]);
-                    }
+                if (symbol == rndPosition) {
+                    tree.append(ornaments[rndOrnament]);
                 }
                 else {
                     tree.append(treeSymbol);
                 }
+
             }
             tree.append(System.lineSeparator());
         }
