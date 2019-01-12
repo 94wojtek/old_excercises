@@ -1,12 +1,12 @@
 package excercises.xmas.tree;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class ChristmasTree {
     private final char treeSymbol = '*';
-    private char[] ornaments = {'+', 'o', '$', '#'};
-
-    //public ChristmasTree() {}
+    private char[] defOrnaments = {'+', 'o', '$', '#'};
+    private char[] ornaments = new char[4];
 
     //TREE BUILDING METHOD
     public void buildTree(int treeHight) {
@@ -97,9 +97,18 @@ public class ChristmasTree {
     }
 }
 
-package excercises.xmas.tree;
+public class Ornaments {
 
-import java.util.Scanner;
+    public void addOrnaments(char[] ornaments) {
+        System.out.println("Type 4 ornament you wish to add: ");
+        Scanner inPut = new Scanner(System.in);
+
+        for (int i = 0; i < ornaments.length; i++) {
+            ornaments[i] = inPut.next().charAt(0);
+        }
+        inPut.close();
+    }
+}
 
 public class Xmas {
     public static void main(String[] args) {
