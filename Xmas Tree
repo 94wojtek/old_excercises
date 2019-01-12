@@ -29,10 +29,10 @@ public class ChristmasTree {
 
     //TREE WITH REGULAR DECORATION BUILDING METHOD
     public void buildRegDecoratedTree(int treeHight) {
-        StringBuilder tree = new StringBuilder();
 
         //CREATE ROWS OF TREE LOOP
         for (int row = 0; row < treeHight; row++) {
+            int maxWidth = (row * 2) + 1;
 
             //ADDING INDENTATION LOOP
             for (int indentation = 0; indentation < treeHight - row - 1; indentation++) {
@@ -40,13 +40,16 @@ public class ChristmasTree {
             }
 
             //ADDING TREE SYMBOL WITH ORNAMENTS LOOP
-            for (int symbol = 1; symbol <= (row * 2) + 1; symbol++) {
+            for (int symbol = 1, arrIndex = -1; symbol <= maxWidth; symbol++, arrIndex++) {
 
-                if (symbol % 4 == 0) {
-                    tree.append(ornaments[0]);
+                if (symbol % 2 == 0 && arrIndex < ornaments.length) {
+                    tree.append(ornaments[arrIndex]);
+                    arrIndex--;
                 }
-                else if (symbol % 2 == 0) {
-                    tree.append(ornaments[1]);
+                else if (arrIndex == ornaments.length) {
+                    arrIndex = 0;
+                    tree.append(ornaments[arrIndex]);
+                    arrIndex--;
                 }
                 else {
                     tree.append(treeSymbol);
@@ -56,6 +59,7 @@ public class ChristmasTree {
         }
         System.out.println(tree.toString());
     }
+    
     //TREE WITH IRREGULAR DECORATION BUILDING METHOD
     public void buildIrregDecoratedTree(int treeHight) {
         StringBuilder tree = new StringBuilder();
