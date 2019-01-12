@@ -5,8 +5,11 @@ import java.util.Scanner;
 
 public class ChristmasTree {
     private final char treeSymbol = '*';
-    private char[] defOrnaments = {'+', 'o', '$', '#'};
+    private char[] defaOrnaments = {'+', 'o', '$', '#'};
     private char[] ornaments = new char[4];
+    Decision decision = new Decision();
+
+    public ChristmasTree() {}
 
     //TREE BUILDING METHOD
     public void buildTree(int treeHight) {
@@ -33,6 +36,15 @@ public class ChristmasTree {
     //TREE WITH REGULAR DECORATION BUILDING METHOD
     public void buildRegDecoratedTree(int treeHight) {
         StringBuilder tree = new StringBuilder();
+        char[] selectedArr = decision.makeDecision(defaOrnaments, ornaments);
+
+        if (selectedArr == ornaments) {
+            Ornaments decoration = new Ornaments();
+            decoration.addOrnaments(ornaments);
+        }
+        else
+            selectedArr = defaOrnaments;
+
 
         //CREATE ROWS OF TREE LOOP
         for (int row = 0; row < treeHight; row++) {
@@ -46,13 +58,13 @@ public class ChristmasTree {
             //ADDING TREE SYMBOL WITH ORNAMENTS LOOP
             for (int symbol = 1, arrIndex = -1; symbol <= maxWidth; symbol++, arrIndex++) {
 
-                if (symbol % 2 == 0 && arrIndex < ornaments.length) {
-                    tree.append(ornaments[arrIndex]);
+                if (symbol % 2 == 0 && arrIndex < selectedArr.length) {
+                    tree.append(selectedArr[arrIndex]);
                     arrIndex--;
                 }
-                else if (arrIndex == ornaments.length) {
+                else if (arrIndex == selectedArr.length) {
                     arrIndex = 0;
-                    tree.append(ornaments[arrIndex]);
+                    tree.append(selectedArr[arrIndex]);
                     arrIndex--;
                 }
                 else {
@@ -68,6 +80,14 @@ public class ChristmasTree {
     public void buildIrregDecoratedTree(int treeHight) {
         StringBuilder tree = new StringBuilder();
         Random random = new Random();
+        char[] selectedArr = decision.makeDecision(defaOrnaments, ornaments);
+
+        if (selectedArr == ornaments) {
+            Ornaments decoration = new Ornaments();
+            decoration.addOrnaments(ornaments);
+        }
+        else
+            selectedArr = defaOrnaments;
 
         //CREATE ROWS OF TREE LOOP
         for (int row = 0; row < treeHight; row++) {
@@ -81,19 +101,42 @@ public class ChristmasTree {
             //ADDING TREE SYMBOL WITH RANDOM ORNAMENTS LOOP
             for (int symbol = 1; symbol <= maxWidth; symbol++) {
                 int rndPosition = random.nextInt(maxWidth + 1);
-                int rndOrnament = random.nextInt(ornaments.length);
+                int rndOrnament = random.nextInt(selectedArr.length);
 
                 if (symbol == rndPosition) {
-                    tree.append(ornaments[rndOrnament]);
+                    tree.append(selectedArr[rndOrnament]);
                 }
                 else {
                     tree.append(treeSymbol);
                 }
-
             }
             tree.append(System.lineSeparator());
         }
         System.out.println(tree.toString());
+    }
+}
+
+public class Decision {
+    Scanner inPut = new Scanner(System.in);
+
+    public char[] makeDecision(char[] arr1, char[] arr2) {
+        System.out.println("Select type of ornaments:");
+        System.out.println("[d] - default ornaments");
+        System.out.println("[c] - customize ornaments");
+        String decision = inPut.next();
+
+        char[] tmp = {' '};
+        if (decision.equals("d")) {
+            tmp = arr1;
+        }
+        else if (decision.equals("c")) {
+            tmp = arr2;
+        }
+        else {
+            throw new IllegalArgumentException("You can only select [d] for default or [c] for custom.");
+        }
+
+        return tmp;
     }
 }
 
