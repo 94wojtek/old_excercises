@@ -5,7 +5,6 @@ public class Binary {
     public void binaryCompute(int number) {
         StringBuilder binaryString = new StringBuilder();
         int result = 0;
-        String finalResult = " ";
 
         if (number < 0) {
             throw new IllegalArgumentException();
@@ -15,11 +14,12 @@ public class Binary {
                 result = number / 2;
                 int moduloResult = number % 2;
                 number = result;
-                finalResult = String.valueOf(binaryString.append(moduloResult));
+                binaryString.append(moduloResult)
             }
             while (result > 0);
+            
+            String finalResult = String.valueOf(binaryString.append);
+            System.out.println(new StringBuilder(finalResult).reverse());
         }
-
-        System.out.println(new StringBuilder(finalResult).reverse());
     }
 }
